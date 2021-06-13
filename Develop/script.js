@@ -1,26 +1,29 @@
-// Assignment code here
+var generateBtn = document.querySelector("#generate");
 
-// character Arrays
-var uppercase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-var lowercase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-var special = ["!", "@", "#", "$", "^", "=", "%", "&", ",", "*", "+", "-", ".", "/", "<", ">", "?", "~"];
-var number = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+function writePassword() {
+  var password = '';
+  var passwordText = document.querySelector("#password");
+  // character strings
+  var uppercase = ("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+  var lowercase = ("abcdefghijklmnopqrstuvwxy");
+  var special = ("!%&*+-./<>?~");
+  var number = ("0123456789");
 
-// var declatarions
-var confirmLength = "";
-var confirmUpper;
-var confirmLower;
-var confirmSpecial;
-var confirmNumber;
-
+  var string1 = "";
+  var string2 = "";
+  var string3 = "";
+  var string4 = "";
+  var parameters = "";
 
   // Length Prompt
   var confirmLength = (prompt("How many characters would you like your password to be? Enter a number 8-128."));
   // Invalid Input
-  while (confirmLength <= 8 || confirmLength >= 129) {
+  while (confirmLength <= 8 || confirmLength >= 128) {
     alert("Password length must be between 8-128 characters!")
     var confirmLength = (prompt("How many characters would you like your password to be? Enter a number 8-128."));
   };
+
+  console.log(confirmLength);
 
   // Password confirm parameters
   var confirmUpper = confirm("Include UPPERCASE letters?");
@@ -39,42 +42,35 @@ var confirmNumber;
     var confirmNumber = confirm("Include numbers?");
   }
 
-var parameters = []
+  if (confirmUpper === true) {
+    string1 = uppercase
+  };
+  if (confirmLower === true) {
+    string2 = lowercase
+  };
+  if (confirmSpecial === true) {
+    string3 = special
+  };
+  if (confirmNumber === true) {
+    string4 = number
+  };
+  parameters = string1 + string2 + string3 + string4
+  console.log(parameters)
 
-if (confirmUpper) {
-parameters = parameters.concat(uppercase)
-}
-if(confirmLower) {
-  parameters = parameters.concat(lowercase)
-}
-if(confirmSpecial) {
-  parameters = parameters.concat(special)
-}
-if(confirmNumber) {
-  parameters = parameters.concat(number)
-}
-// log all selected parameters in console to confirm selections work
-console.log(parameters)
+  // log all selected parameters in console to confirm selections work
 
-// generate password based on all parameters
-var generatePassword = ""
-for (var i = 0; i < confirmLength; i++) {
-  generatePassword = generatePassword + parameters[Math.floor(Math.random() * confirmLength.length)];
-}
+  // generate password based on all parameters
 
-console.log(generatePassword)
 
-  // Get references to the #generate element
-  var generateBtn = document.querySelector("#generate");
-
-  // Write password to the #password input
-  function writePassword() {
-    var password = generatePassword();
-    var passwordText = document.querySelector("#password");
-
-    passwordText.value = password;
-
+  for (var i = 0; i <= confirmLength - 1; i++) {
+    var randomPassword = parameters[Math.floor(Math.random() * parameters.length)];
+    console.log(randomPassword);
+    password += randomPassword;
   }
 
-  // Add event listener to generate button
-  generateBtn.addEventListener("click", writePassword);
+  passwordText.value = password;
+}
+
+
+
+generateBtn.addEventListener("click", writePassword);
