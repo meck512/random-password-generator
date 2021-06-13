@@ -60,7 +60,6 @@ function writePassword() {
   
   for (var i = 0; i <= confirmLength - 1; i++) {
     var randomPassword = parameters[Math.floor(Math.random() * parameters.length)];
-    console.log(randomPassword);
     password += randomPassword;
   }
 
