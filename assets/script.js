@@ -57,11 +57,7 @@ function writePassword() {
   parameters = string1 + string2 + string3 + string4
   console.log(parameters)
 
-  // log all selected parameters in console to confirm selections work
-
-  // generate password based on all parameters
-
-
+  
   for (var i = 0; i <= confirmLength - 1; i++) {
     var randomPassword = parameters[Math.floor(Math.random() * parameters.length)];
     console.log(randomPassword);
@@ -70,7 +66,5 @@ function writePassword() {
 
   passwordText.value = password;
 }
-
-
 
 generateBtn.addEventListener("click", writePassword);
